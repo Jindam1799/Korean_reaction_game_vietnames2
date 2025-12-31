@@ -1,0 +1,287 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+
+:root {
+  --primary: #6c5ce7; /* 보라색 */
+  --secondary: #a29bfe; /* 연보라색 */
+  --correct: #2ed573;
+  --wrong: #ff4757;
+  --white: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Pretendard', sans-serif;
+  background: linear-gradient(135deg, #f3f0ff 0%, #e0e0ff 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#game-container {
+  width: 100%;
+  max-width: 420px;
+  height: 88vh;
+  background: var(--white);
+  border-radius: 45px;
+  box-shadow: 0 30px 60px rgba(108, 92, 231, 0.2);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- [전체 레이어 워터마크] --- */
+.global-watermark {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150'%3E%3Ctext x='10' y='50' font-size='18' font-weight='bold' font-family='sans-serif' fill='%236C5CE7' transform='rotate(-20 50 50)'%3E진담한국어%3C/text%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* --- [사지선다 버튼 그리드 영역] --- */
+#button-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 30px;
+  background: #f8f7ff; /* 하단 버튼 영역 배경색 */
+  border-bottom-left-radius: 45px;
+  border-bottom-right-radius: 45px;
+  position: relative;
+  z-index: 10;
+}
+
+/* --- [사지선다 개별 카드 디자인] --- */
+.choice-card {
+  cursor: pointer;
+  padding: 18px;
+  border-radius: 15px;
+  border: 2.5px solid #eceaff;
+  background: white;
+  font-weight: 800;
+  color: var(--primary);
+  font-size: 1.1rem;
+  transition: 0.2s;
+  box-shadow: 0 4px 10px rgba(108, 92, 231, 0.05);
+}
+.choice-card:hover {
+  transform: scale(1.03);
+  border-color: var(--primary);
+  background: #fdfcff;
+}
+
+/* --- [메인 버튼 (시작/다시시작)] --- */
+.main-btn {
+  cursor: pointer;
+  border: none;
+  font-weight: 800;
+  border-radius: 20px;
+  transition: 0.2s;
+  color: white;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+}
+.main-btn:hover {
+  transform: scale(1.02);
+}
+
+/* --- [말풍선 디자인] --- */
+.speech-bubble.a {
+  background: #f3f0ff;
+  align-self: flex-start;
+  width: 85%;
+}
+.speech-bubble.b {
+  border: 3px solid var(--primary);
+  background: #fffbfb;
+  align-self: flex-end;
+  width: 85%;
+}
+
+/* 나머지 기존 스타일 유지 */
+.modal-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 1000;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
+}
+#game-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin: 30px 0;
+}
+.lang-switch-box {
+  display: flex;
+  background: #f3f0ff;
+  border-radius: 50px;
+  padding: 5px;
+  margin-bottom: 25px;
+}
+.lang-btn {
+  border: none;
+  background: transparent;
+  padding: 10px 30px;
+  border-radius: 40px;
+  cursor: pointer;
+  font-weight: 800;
+  color: #a29bfe;
+  transition: 0.3s;
+  font-size: 1rem;
+}
+.lang-btn.active {
+  background: var(--white);
+  color: var(--primary);
+  box-shadow: 0 4px 10px rgba(108, 92, 231, 0.2);
+}
+.info-box {
+  background: #f8f7ff;
+  border: 2px solid #eceaff;
+  border-radius: 30px;
+  padding: 30px 20px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+header {
+  padding: 20px 25px;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 10;
+}
+.timer-section {
+  font-family: 'Montserrat';
+  font-weight: 800;
+  color: var(--wrong);
+  font-size: 1.1rem;
+}
+#lives-display {
+  padding: 0 25px;
+  font-size: 1.4rem;
+  letter-spacing: 5px;
+  position: relative;
+  z-index: 10;
+}
+.speech-bubble {
+  padding: 20px;
+  border-radius: 22px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+#feedback-msg {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  padding: 15px 35px;
+  border-radius: 50px;
+  font-weight: 800;
+  z-index: 3000;
+  display: none;
+}
+#feedback-msg.correct {
+  background: var(--correct);
+  display: block;
+}
+#feedback-msg.wrong {
+  background: var(--wrong);
+  display: block;
+  animation: shake 0.4s;
+}
+.hidden {
+  display: none !important;
+}
+@keyframes shake {
+  0%,
+  100% {
+    transform: translate(-50%, -50%);
+  }
+  25% {
+    transform: translate(-55%, -50%);
+  }
+  75% {
+    transform: translate(-45%, -50%);
+  }
+}
+.credits-area {
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  z-index: 1500;
+  font-size: 0.65rem;
+  color: #b2bec3;
+  line-height: 1.4;
+  font-weight: 600;
+}
+/* --- [학습 결과 리포트 영역] --- */
+#result-display {
+  position: absolute;
+  inset: 0;
+  z-index: 2000; /* 모든 레이어보다 위에 표시 */
+  background: var(--white);
+  padding: 40px 30px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#result-display h2 {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+/* --- [리포트 개별 카드 디자인] --- */
+.report-card {
+  background: #f8f7ff;
+  padding: 20px;
+  border-radius: 22px;
+  border-left: 6px solid var(--primary); /* 왼쪽에 보라색 포인트 */
+  text-align: left;
+  box-shadow: 0 4px 15px rgba(108, 92, 231, 0.08);
+  transition: transform 0.2s;
+}
+
+.report-card:hover {
+  transform: translateX(5px); /* 살짝 옆으로 움직이는 효과 */
+}
+
+.report-card small {
+  color: #a29bfe; /* 연보라색으로 친구 대화 표시 */
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.report-card strong {
+  color: #2d3436;
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+/* 리포트 하단 다시 시작 버튼 */
+#result-display .main-btn {
+  margin-top: 20px;
+  padding: 20px;
+  width: 100%;
+  flex-shrink: 0; /* 버튼 크기 유지 */
+}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>K-Comfort Master</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://jindam1799.github.io/Korean_comfort_game_vietnames/"
+    />
+    <meta property="og:title" content="K-Comfort Master" />
+    <meta
+      property="og:description"
+      content="따뜻한 한국어 위로와 격려를 배워보세요"
+    />
+
+    <meta
+      property="og:image"
+      content="https://jindam1799.github.io/Korean_reaction_game_vietnames/images/logo.png"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:image"
+      content="https://jindam1799.github.io/Korean_reaction_game_vietnames/images/logo.png"
+    />
+  </head>
+  <!DOCTYPE html>
+  <html lang="ko">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>K-Comfort Master</title>
+      <link rel="stylesheet" href="style.css" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700&display=swap"
+        rel="stylesheet"
+      />
+    </head>
+    <body>
+      <div id="game-container">
+        <div class="global-watermark"></div>
+        <div class="credits-area">
+          제작: 진담한국어<br />감수: 원나리<br />개발: Dukimi
+        </div>
+        <div id="feedback-msg"></div>
+
+        <div id="rules-modal" class="modal-screen">
+          <h1 id="game-title">K-COMFORT MASTER</h1>
+          <div class="lang-switch-box">
+            <button onclick="switchLang('ko')" id="btn-ko" class="lang-btn">
+              KO
+            </button>
+            <button
+              onclick="switchLang('vn')"
+              id="btn-vn"
+              class="lang-btn active"
+            >
+              VN
+            </button>
+          </div>
+          <div class="info-box">
+            <div style="font-size: 3rem">🤝💜✨</div>
+            <div
+              id="story-text"
+              style="line-height: 1.7; font-weight: 500; margin-bottom: 20px"
+            ></div>
+            <button
+              id="start-btn-text"
+              class="main-btn"
+              style="width: 100%; padding: 18px"
+              onclick="startGame()"
+            ></button>
+          </div>
+        </div>
+
+        <div id="game-over-modal" class="modal-screen hidden">
+          <h1 id="game-title">GAME OVER</h1>
+          <div class="info-box">
+            <div style="font-size: 3rem">😢💜</div>
+            <h2
+              id="game-over-title"
+              style="color: var(--primary); margin: 0"
+            ></h2>
+            <p
+              id="game-over-desc"
+              style="font-weight: bold; color: #2d3436"
+            ></p>
+            <button
+              id="restart-btn-text"
+              class="main-btn"
+              style="width: 100%; padding: 18px"
+              onclick="location.reload()"
+            ></button>
+          </div>
+        </div>
+
+        <header id="quiz-header">
+          <div id="timer-section" class="timer-section">
+            ⏱ <span id="time-left">60</span>S
+          </div>
+        </header>
+
+        <div id="lives-display"></div>
+
+        <div
+          id="game-play-area"
+          style="
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 30px;
+          "
+        >
+          <div class="speech-bubble a">
+            <div id="text-a" style="font-weight: 800; font-size: 1.2rem"></div>
+            <div
+              id="tran-a"
+              style="font-size: 0.9rem; color: #888; margin-top: 5px"
+            ></div>
+          </div>
+          <div class="speech-bubble b">
+            <div
+              id="text-b"
+              style="font-weight: 800; font-size: 1.2rem; color: var(--primary)"
+            ></div>
+            <div
+              id="tran-b"
+              style="font-size: 0.9rem; color: #888; margin-top: 5px"
+            ></div>
+          </div>
+        </div>
+
+        <div
+          id="result-display"
+          class="hidden"
+          style="
+            padding: 30px;
+            overflow-y: auto;
+            height: 100%;
+            position: relative;
+            z-index: 100;
+          "
+        ></div>
+        <div id="button-grid"></div>
+      </div>
+      <script type="module" src="game.js"></script>
+    </body>
+  </html>
+</html>
