@@ -60,7 +60,7 @@ export const level1Data = [
     av: 'Bạn: Bài thuyết trình sao rồi?',
     b: '음..., __.',
     bv: 'Ừm..., __.(chỉ ở mức bình thường)',
-    ans: ['나쁘지 않네'],
+    ans: ['나쁘지 않았어'],
   },
   {
     a: '친구: 너무 지쳤어...',
