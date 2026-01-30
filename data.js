@@ -46,7 +46,7 @@ export const level1Data = [
     av: 'Bạn: Ngày mai cũng phải thi đấy',
     b: '__, 너무 힘들다..',
     bv: '__, Mệt ghê..',
-    ans: ['아, 진짜요?'],
+    ans: ['아, 진짜?'],
   },
   {
     a: '친구: 더 있어도 재미없어.',
